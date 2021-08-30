@@ -1,0 +1,22 @@
+<br>
+<div class="inline" *ngFor="let a of fakeArray; let index = index">
+    <h2 class="mid">operation {{ index }}</h2>
+    <mat-card class="example-card" >
+        <div *ngIf="temp[index].action === 'add'">
+            <h1 class="head">Add</h1>
+            <br>
+            <h2> 
+                {{ temp[index].value }} + {{ addNum }} =  {{ final[index] }}
+            </h2>
+        </div>
+        
+        <div *ngIf="temp[index].action === 'multiply'">
+            <h1 class="head">Multiply</h1>
+            <br>
+            <h2>
+                {{ temp[index].value }} * {{ multiplyNum }} = {{ final[index] }}
+            </h2>
+        </div>
+    </mat-card>
+</div>
+

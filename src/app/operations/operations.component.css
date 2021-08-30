@@ -1,0 +1,27 @@
+.example-card {
+    max-width: 350px;
+    min-width: 350px;
+    max-height: 350px;
+    min-height: 350px;
+    background: darkkhaki;
+    padding: 10px;
+    margin: 20px;
+    text-align: center;
+    /* border-radius: 0%; */
+  }
+  
+  div.inline { float:left; }
+
+.head{
+  font-weight: bold;
+  font-size: 25px;
+  background: red;
+  margin:20px;
+  padding: 10px;
+}
+
+.mid{
+  text-align: center;
+  font-weight: bold;
+  font-size: 25px;
+}
