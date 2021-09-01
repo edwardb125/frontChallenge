@@ -7,15 +7,16 @@
     padding: 10px;
     margin: 20px;
     text-align: center;
-    /* border-radius: 0%; */
   }
   
-  div.inline { float:left; }
+div.inline {
+  float:left; 
+}
 
 .head{
   font-weight: bold;
   font-size: 25px;
-  background: red;
+  background:cornflowerblue;
   margin:20px;
   padding: 10px;
 }
@@ -24,4 +25,10 @@
   text-align: center;
   font-weight: bold;
   font-size: 25px;
+}
+
+.operation{
+  font-size: 40px;
+  font-weight: bold;
+  color: darkslategray;
 }
