@@ -1,22 +1,15 @@
 .example-card {
-    max-width: 350px;
-    min-width: 350px;
-    max-height: 350px;
-    min-height: 350px;
+    width: 350px;
+    height: 350px;
     background: darkkhaki;
     padding: 10px;
     margin: 20px;
     text-align: center;
   }
-  
-  div.inline {
-    float: left;
-  }
 
 .head{
   font-weight: bold;
   font-size: 25px;
-  background:cornflowerblue;
   margin:20px;
   padding: 10px;
 }
@@ -27,6 +20,12 @@
   font-size: 25px;
 }
 
+.father{
+  background-image: linear-gradient(to right top, #77a2e3, #5cbade, #79cbcb, #aad6be, #d6dec3);
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
 
 .operation{
   font-size: 40px;

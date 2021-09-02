@@ -1,5 +1,5 @@
-    <div class="inline" *ngFor="let operation of finalArray">
-        <mat-card class="example-card" >
+<div class = "father">
+        <mat-card class="example-card" *ngFor="let operation of finalArray">
             <div *ngIf="operation.action === 'add'">
                 <h1 class="head">Add</h1>
                 <br><br><br><br><br>
@@ -20,5 +20,6 @@
     
             </div>
         </mat-card>
-    </div>
+</div>
+    
 
