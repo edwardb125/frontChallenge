@@ -9,9 +9,9 @@
     text-align: center;
   }
   
-div.inline {
-  float:left; 
-}
+  div.inline {
+    float: left;
+  }
 
 .head{
   font-weight: bold;
@@ -26,6 +26,7 @@ div.inline {
   font-weight: bold;
   font-size: 25px;
 }
+
 
 .operation{
   font-size: 40px;

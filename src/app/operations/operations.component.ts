@@ -1,6 +1,7 @@
 import { GetdataService } from './getdata.service';
 import { Component,OnInit} from '@angular/core';
-import { Data } from './operations.model'
+import { Data } from './operations.model';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-operation',
@@ -9,12 +10,18 @@ import { Data } from './operations.model'
 })
 export class Operation implements OnInit {
   finalArray : Data[] = [];
+  
 
-  constructor(private oprService: GetdataService){
+  constructor(private oprService: GetdataService, private _snackBar: MatSnackBar){
   }
 
   ngOnInit(){
-    this.finalArray = this.oprService.doMath()
+    this.oprService.fetchPosts().subscribe(
+      posts => {
+      this.finalArray = this.oprService.doMath(posts);
+    },errorHandling =>{
+      this._snackBar.open('Server Error','close');
+    } );
   }
 
 }

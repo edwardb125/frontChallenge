@@ -1,23 +1,24 @@
-<br>
-<div class="inline" *ngFor="let operation of finalArray">
-    <mat-card class="example-card" >
-        <div *ngIf="operation.action === 'add'">
-            <h1 class="head">Add</h1>
-            <br><br><br><br><br>
-
-            <h2 class="operation">
-                {{ operation.value1 }} + {{ operation.value2 }} =  {{ operation.result }}
-            </h2>
+    <div class="inline" *ngFor="let operation of finalArray">
+        <mat-card class="example-card" >
+            <div *ngIf="operation.action === 'add'">
+                <h1 class="head">Add</h1>
+                <br><br><br><br><br>
+    
+                <h2 class="operation">
+                    {{ operation.value1 }} + {{ operation.value2 }} =  {{ operation.result }}
+                </h2>
+                
+            </div>
             
-        </div>
-        
-        <div *ngIf="operation.action === 'multiply'">
-            <h1 class="head">Multiply</h1>
-            <br><br><br><br><br>
-            <h2 class="operation">
-                {{ operation.value1 }} * {{ operation.value2 }} = {{ operation.result }}
-            </h2>
-        </div>
-    </mat-card>
-</div>
+            <div *ngIf="operation.action === 'multiply'">
+                <h1 class="head">Multiply</h1>
+                <br><br><br><br><br>
+    
+                <h2 class="operation">
+                    {{ operation.value1 }} * {{ operation.value2 }} = {{ operation.result }}
+                </h2>
+    
+            </div>
+        </mat-card>
+    </div>
 

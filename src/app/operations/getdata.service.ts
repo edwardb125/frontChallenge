@@ -1,10 +1,8 @@
 import { Injectable } from '@angular/core';
-import AddJson from '../../assets/Add.json';
-import MultiplyJson from '../../assets/Multiply.json';
-
-import {Data} from './operations.model';
-import NumberJson from '../../assets/Numbers.json';
+import { Data } from './operations.model';
 import { HttpClient } from '@angular/common/http';
+import { mergeMap, map, catchError } from 'rxjs/operators';
+import { of } from 'rxjs';
 
 
 @Injectable({
@@ -13,51 +11,63 @@ import { HttpClient } from '@angular/common/http';
 export class GetdataService {
 
 
-  // constructor(private http: HttpClient) { }
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
-  ngOnInit() {
-    // this.fetchPosts();
+  fetchPosts() {
+    return this.http.get('../../assets/Numbers.json').pipe(
+      mergeMap(number => {
+        return this.http.get('../../assets/Add.json').pipe(
+          catchError(() => {
+            return of({value: 'Missing Data!'})
+          })
+          ,map(add => {
+            return {addJson: add, NumberJson: number}
+          }),
+          mergeMap((data : any) =>{
+            return this.http.get('../../assets/Multiply.json').pipe(
+              catchError(() => {
+                return of({value: 'Missing Data!'})
+              })
+              ,map(multipy => {
+                return {MultiplyJson: multipy, ...data}
+              })
+            )
+          })
+        )
+      }
+    ));
+  }         
+             
+  doMath(obj: any){
+    const finalArray : Data[] = [];
+    for (const iterator of obj.NumberJson) {
+      this.checkAdd(iterator, obj, finalArray);
+      this.checkMultiply(iterator, obj, finalArray);
+    }
+    return finalArray;
   }
 
 
-  // onFetchPosts(){
-  //   this.fetchPosts();
-  // }
-
-
-  // private fetchPosts() {
-  //   this.http.get('../../assets/Add.json')
-  //   .subscribe(posts => {
-  //     console.log(posts);
-  //   });
-  // }
-
-  doMath(){
-    console.log(NumberJson)
-    const finalArray : Data[] = [];
-
-    for (const iterator of NumberJson) {
-      if(iterator.action === 'add'){
-        finalArray.push({
-          value1 : iterator.value,
-          value2 : AddJson.value,
-          action : iterator.action,
-          result : iterator.value + AddJson.value,
-        })
-      }
-      else{
-        finalArray.push({
-          value1 : iterator.value,
-          value2 : MultiplyJson.value,
-          action : iterator.action,
-          result : iterator.value * MultiplyJson.value,
-        })
-      }
+  checkMultiply(iterator : any, obj : any, finalArray : Data[]){
+    if(iterator.action === 'multiply'){
+      finalArray.push({
+        value1 : iterator.value,
+        value2 : obj.MultiplyJson.value,
+        action : iterator.action,
+        result : iterator.value * obj.MultiplyJson.value,
+      })
     }
-    console.log(finalArray)
-    return finalArray;
+  }
 
 
+  checkAdd(iterator : any, obj : any, finalArray : Data[]){
+    if(iterator.action === 'add'){
+      finalArray.push({
+        value1 : iterator.value,
+        value2 : obj.addJson.value,
+        action : iterator.action,
+        result : iterator.value + obj.addJson.value,
+      })
+    }
   }
 }
