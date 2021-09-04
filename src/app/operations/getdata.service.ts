@@ -8,9 +8,9 @@ import { of } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
+
 export class GetdataService {
-
-
+  
   constructor(private http: HttpClient) { }
 
   fetchPosts() {

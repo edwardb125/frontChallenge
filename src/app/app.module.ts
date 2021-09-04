@@ -6,13 +6,15 @@ import { MatCardModule} from '@angular/material/card';
 import { HttpClientModule } from '@angular/common/http';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { AppComponent } from './app.component';
+import { TestttComponent } from './testtt/testtt.component';
 
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    Operation
+    Operation,
+    TestttComponent
   ],
   imports: [
     HttpClientModule,
