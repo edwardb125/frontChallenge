@@ -34,6 +34,19 @@ describe('GetdataService', () => {
     )
   })
 
+  // it('this function should return an observableljskfjlfsjdkdafjkdfjl',
+  // (done : DoneFn) => {
+  //   http.get.withArgs('../../assets/Adds.json').and.throwError('Missage Data!');
+  //   service.fetchPosts().subscribe(
+  //     value => {
+  //       const finalValue = {message: 'Missage Data!'};
+  //       console.log(value)
+  //       // expect(value).to(finalValue);
+  //       // done();
+  //     }
+  //   )
+  // })
+
   it('this function should push an onject that result value added by two number', () => {
     const final : any[] = [];
     const numberJson = {value: 5, action : 'add'};
