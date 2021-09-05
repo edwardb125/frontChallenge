@@ -14,18 +14,6 @@ export class GetdataService {
   constructor(private http: HttpClient) { }
 
   fetchPosts() {
-  //   return this.http.get('../../assets/Multiply.json').pipe(
-  //     mergeMap(number => {
-  //       return this.http.get('../../assets/Add.json').pipe(
-  //         map(add => {
-  //           return ({
-  //             number, add
-  //           })
-  //         })
-  //       )
-  //     })
-  //   );
-  // }
     return this.http.get('../../assets/Numbers.json').pipe(
       mergeMap(number => {
         return this.http.get('../../assets/Add.json').pipe(

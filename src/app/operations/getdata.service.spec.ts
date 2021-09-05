@@ -23,6 +23,7 @@ describe('GetdataService', () => {
   (done : DoneFn) => {
     http.get.withArgs('../../assets/Multiply.json').and.returnValue(of('multiplyValue'));
     http.get.withArgs('../../assets/Add.json').and.returnValue(of('addValue'));
+    http.get.withArgs('../../assets/Adds.json').and.throwError('Missage Data!');
     http.get.withArgs('../../assets/Numbers.json').and.returnValue(of('numberValue'));
     service.fetchPosts().subscribe(
       value => {
