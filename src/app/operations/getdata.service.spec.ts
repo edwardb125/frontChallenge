@@ -1,6 +1,5 @@
 import { HttpClient } from '@angular/common/http';
 import { TestBed } from '@angular/core/testing';
-import { Operation } from './operations.component'
 import { GetdataService } from './getdata.service';
 
 describe('GetdataService', () => {
@@ -64,8 +63,29 @@ describe('GetdataService', () => {
         value: 6
       }
     }
-    service.checkMultiply(numberJson, inputObject, final)
-  expect(final.length).toBe(0)
+    service.checkMultiply(numberJson, inputObject, final);
+  expect(final.length).toBe(0);
+  })
+
+  it('this function should return an object that add two value', () => {
+    const inputObject = {
+      NumberJson: [{value:3, action:'add'}],
+      addJson : {
+        value : 6
+      }
+    }
+    const result = service.doMath(inputObject);
+    expect(result[0].result).toBe(9);
+  })
+  it('this function should return an object that multiply two value', () => {
+    const inputObject = {
+      NumberJson: [{value:3, action:'multiply'}],
+      MultiplyJson : {
+        value : 6
+      }
+    }
+    const result = service.doMath(inputObject);
+    expect(result[0].result).toBe(18);
   })
 });
 
