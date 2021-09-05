@@ -60,7 +60,7 @@ export class GetdataService {
   }
 
 
-  checkAdd(iterator : any, obj : any, finalArray : Data[]){
+  checkAdd(iterator : any, obj : any, finalArray : any[]){
     if(iterator.action === 'add'){
       finalArray.push({
         value1 : iterator.value,

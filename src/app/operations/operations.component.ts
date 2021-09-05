@@ -18,6 +18,7 @@ export class Operation implements OnInit {
   ngOnInit(){
     this.oprService.fetchPosts().subscribe(
       posts => {
+      console.log(posts)
       this.finalArray = this.oprService.doMath(posts);
     },errorHandling =>{
       this._snackBar.open('Server Error','close');
