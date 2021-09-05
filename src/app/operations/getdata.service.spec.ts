@@ -27,9 +27,7 @@ describe('GetdataService', () => {
     http.get.withArgs('../../assets/Numbers.json').and.returnValue(of('numberValue'));
     service.fetchPosts().subscribe(
       value => {
-        console.log(value);
         const finalValue = {MultiplyJson: 'multiplyValue', addJson: 'addValue', NumberJson: 'numberValue'};
-        console.log(finalValue);
         expect(value).toEqual(finalValue);
         done();
       }
