@@ -34,18 +34,47 @@ describe('GetdataService', () => {
     )
   })
 
-  // it('this function should return an observableljskfjlfsjdkdafjkdfjl',
-  // (done : DoneFn) => {
-  //   http.get.withArgs('../../assets/Adds.json').and.throwError('Missage Data!');
-  //   service.fetchPosts().subscribe(
-  //     value => {
-  //       const finalValue = {message: 'Missage Data!'};
-  //       console.log(value)
-  //       // expect(value).to(finalValue);
-  //       // done();
-  //     }
-  //   )
-  // })
+  it('this test should throw error ',
+  (done : DoneFn) => {
+    http.get.withArgs('../../assets/Add.json').and.returnValue(throwError('Missing Data!'));
+    http.get.withArgs('../../assets/Numbers.json').and.returnValue(of('numberValue'));
+    http.get.withArgs('../../assets/Multiply.json').and.returnValue(of('multiplyValue'));
+    service.fetchPosts().subscribe(
+      value => {
+        const finalValue = {MultiplyJson: 'multiplyValue', addJson: {value: 'Missing Data!'}, NumberJson: 'numberValue'};
+        expect(value).toEqual(finalValue);
+        done();
+      }
+    )
+  })
+
+  it('this function should return an observablewwwwwwwwwwwwwwwwwwwwww',
+  (done : DoneFn) => {
+    http.get.withArgs('../../assets/Add.json').and.returnValue(of('addValue'));
+    http.get.withArgs('../../assets/Numbers.json').and.returnValue(of('numberValue'));
+    http.get.withArgs('../../assets/Multiply.json').and.returnValue(throwError('Missage Data!'));
+    service.fetchPosts().subscribe(
+      value => {
+        const finalValue = {MultiplyJson: {value:'Missing Data!'}, addJson: 'addValue', NumberJson: 'numberValue'};
+        expect(value).toEqual(finalValue);
+        done();
+      }
+    )
+  })
+
+  it('this function should return an dsfsdfsssssssssssssssssssssssss',
+  (done : DoneFn) => {
+    http.get.withArgs('../../assets/Numbers.json').and.returnValue(throwError('Server Error'));
+
+    service.fetchPosts().subscribe(
+      () => {
+      },
+      value => {
+        expect(value).toEqual('Server Error');
+        done();
+      }
+    )
+  })
 
   it('this function should push an onject that result value added by two number', () => {
     const final : any[] = [];

@@ -1,17 +1,18 @@
-import { of } from 'rxjs';
+import { of, throwError } from 'rxjs';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Operation } from './operations.component';
 import { TestBed, ComponentFixture } from '@angular/core/testing';
 import { GetdataService } from './getdata.service';
 import { CUSTOM_ELEMENTS_SCHEMA, DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
-// import { MatCardModule} from '@angular/material/card';
 
 
 describe('Operation', () => {
     let component: Operation;
     let fixture : ComponentFixture<Operation>;
-    let userService : GetdataService
+    let userService : GetdataService;
+    let snack : MatSnackBar;
+
     beforeEach(() => {
         const SpyObject = jasmine.createSpyObj('GetdataService', ['doMath','fetchPosts'])
         const SpyMatSnackBar = jasmine.createSpyObj('MatSnackBar',['open'])
@@ -29,6 +30,7 @@ describe('Operation', () => {
 
         fixture = TestBed.createComponent(Operation);
         userService = fixture.debugElement.injector.get(GetdataService);
+        snack = fixture.debugElement.injector.get(MatSnackBar);
         userService.fetchPosts = () => {
             return of([]);
         }
@@ -40,13 +42,26 @@ describe('Operation', () => {
       });
 
       it('should have <p> with "add"', () => {
-          component.finalArray=[{action:'add', value1:2, value2: 4, result:6},{action:'add', value1:2, value2: 5, result:7}];
-          fixture.detectChanges();
-
+        userService.fetchPosts = () => {
+            return of([{action:'add', value1:2, value2: 4, result:6},{action:'add', value1:2, value2: 5, result:7}]);
+        }
+        userService.doMath = (post) => {
+            return post;
+        }
+        component.ngOnInit();
+         fixture.detectChanges();
         const bannerDe : DebugElement = fixture.debugElement;
         const paragraphDe = bannerDe.queryAll(By.css('.head'));
         expect(paragraphDe.length).toBe(2);
-        
+      })
+
+
+      it('this should throw error', () => {
+        userService.fetchPosts = () => {
+            return throwError('Server Error');
+        }
+        component.ngOnInit();
+        expect(snack.open).toHaveBeenCalledWith('Server Error','close');
       })
 
 })
