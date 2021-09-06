@@ -34,7 +34,7 @@ describe('GetdataService', () => {
     )
   })
 
-  it('this test should throw error ',
+  it('this test should throw error "Missing Data!" that come from add.json file',
   (done : DoneFn) => {
     http.get.withArgs('../../assets/Add.json').and.returnValue(throwError('Missing Data!'));
     http.get.withArgs('../../assets/Numbers.json').and.returnValue(of('numberValue'));
@@ -48,7 +48,7 @@ describe('GetdataService', () => {
     )
   })
 
-  it('this function should return an observablewwwwwwwwwwwwwwwwwwwwww',
+  it('this test should throw error "Missing Data!" that come from Multiply.json file',
   (done : DoneFn) => {
     http.get.withArgs('../../assets/Add.json').and.returnValue(of('addValue'));
     http.get.withArgs('../../assets/Numbers.json').and.returnValue(of('numberValue'));
