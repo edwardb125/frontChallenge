@@ -62,7 +62,7 @@ describe('GetdataService', () => {
     )
   })
 
-  it('this function should return an dsfsdfsssssssssssssssssssssssss',
+  it('this test should throw error "server Error" that come from Numbers.json file',
   (done : DoneFn) => {
     http.get.withArgs('../../assets/Numbers.json').and.returnValue(throwError('Server Error'));
 
